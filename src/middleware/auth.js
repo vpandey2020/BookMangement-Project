@@ -7,7 +7,7 @@ const authentication = async  function (req, res, next) {
         if (!token)
             return res.status(403).send({ status: false, msg: "Missing authentication token request" })
 
-       const decodedToken = jwt.verify(token, 'nikita singh')
+       const decodedToken = jwt.verify(token, 'Vipin Pandey')
        if (!decodedToken){
            res.status(403).send({status:false,msg:"invalid authentication request"})
            return
