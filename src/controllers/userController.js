@@ -2,9 +2,9 @@ const userModel = require('../models/userModel')
 let jwt = require('jsonwebtoken')
 
 // define valid function---------------------
-const { isValid , isValidTitle} = require("../isValid/valid.js")
+const { isValid, isValidTitle } = require("../isValid/valid.js")
 
-const createUser = async function (req, res) {
+const createUser = async function(req, res) {
 
     try {
         let x = req.query
@@ -14,7 +14,7 @@ const createUser = async function (req, res) {
 
         let data = req.body
 
-        let { title, name, phone, email, password, address } = data  //destructuring method
+        let { title, name, phone, email, password, address } = data //destructuring method
 
 
         if (Object.keys(data).length == 0) {
@@ -92,7 +92,7 @@ const createUser = async function (req, res) {
 }
 
 
-const loginUser = async function (req, res) {
+const loginUser = async function(req, res) {
     try {
         let userName = req.body.email;
         let password = req.body.password;
@@ -107,13 +107,10 @@ const loginUser = async function (req, res) {
                 msg: "user name or the password is not corerct",
             });
 
-        let token = jwt.sign(
-            { userID: user._id.toString() }, 'nikita singh', { expiresIn: "300000 m" }
-        );
+        let token = jwt.sign({ userID: user._id.toString() }, 'Vipin Pandey', { expiresIn: "300000 m" });
         res.setHeader("x-api-key", token);
         return res.status(201).send({ status: true, msg: "success", data: token });
-    }
-    catch (err) {
+    } catch (err) {
 
         return res.status(500).send({ msg: "Error", error: err.message })
     }
@@ -122,4 +119,3 @@ const loginUser = async function (req, res) {
 
 module.exports.createUser = createUser
 module.exports.loginUser = loginUser
-
